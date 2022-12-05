@@ -43,11 +43,12 @@ public class ProductServiceController {
     }
     @RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> delete(@PathVariable("id") String id) {
-        if(!productRepo.containsKey(id))
+        //membuat statment if 
+        if(!productRepo.containsKey(id)) //jika id belum ada maka tidak bisa di hapus
         {
             return new ResponseEntity<>("Product missing", HttpStatus.NOT_FOUND);
         }
-        else
+        else //membuat statment else
         {
             productRepo.remove(id);
         return new ResponseEntity<> ("Product is delete success", HttpStatus.OK);
@@ -55,11 +56,12 @@ public class ProductServiceController {
     }
         @RequestMapping (value = "/products/{id}", method = RequestMethod.PUT)
         public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product){
-            if (!productRepo.containsKey(id))
+            //membuat statment if 
+            if (!productRepo.containsKey(id)) //jika id belum ada maka tidak bisa di update
             {
-             return new ResponseEntity<>("Product missing", HttpStatus.NOT_FOUND);
+             return new ResponseEntity<>("Product missing", HttpStatus.NOT_FOUND); 
             }
-            else
+            else //membuat statment else
             {
             productRepo.remove(id);
             product.setId(id);
@@ -70,17 +72,18 @@ public class ProductServiceController {
         }
         @RequestMapping(value = "/products", method = RequestMethod.POST)
         public ResponseEntity<Object> createProduct(@RequestBody Product product){
-            if(productRepo.containsKey(product.getId()))
+            //membuat statment if 
+            if(productRepo.containsKey(product.getId())) //jika id sudah ada maka akan gagal membuat data atau not found
             {
                 return new ResponseEntity<>("Product missing", HttpStatus.NOT_FOUND);
                 
             }
-            else
+            else //membuat statment else
             {
             
             
-            productRepo.put(product.getId(), product);
-            return new ResponseEntity<>("Product created succes", HttpStatus.OK);
+            productRepo.put(product.getId(), product);//jika id belum ada maka akan berhasil membuat data
+            return new ResponseEntity<>("Product created succes", HttpStatus.OK); 
             }
         
         }
