@@ -20,8 +20,8 @@ public class Product {
         return total;
     }
 
-    public void setTotal(Double x , Integer y) {
-        this.total = (x-(x*(Double.valueOf(y)/100)));
+    public void setTotal(Double total) {
+        this.total = total;
     }
   
 
